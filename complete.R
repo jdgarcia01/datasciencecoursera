@@ -1,3 +1,14 @@
+#Write a function that reads a directory full of files and reports
+#the number of completely observed cases in each data file. 
+#The function should return a data frame where the first column is the name of the file
+#and the second column is the number of complete cases. A prototype of this function follows
+
+## Author John D. Garcia
+## This function will return the file name
+## and the number of non NA observations
+## as a data.frame. 
+
+
 complete <- function(directory, id = 1:332){
   
   ## Read a directory of files and return a dataframe 
