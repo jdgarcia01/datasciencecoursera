@@ -5,10 +5,10 @@ complete <- function(directory, id = 1:332){
   ## in each file. 
   files_to_read   <- list.files(directory, full.names = TRUE)
   data_from_files <- 0
-  merge_my_data   <- 0
-  
+ 
+
   # get the data frame and remove the NA values. 
-  my_file_data <- lapply(files_to_read[id], function(index){
+  my_file_data <- sapply(files_to_read[id], function(index){
     
     ## Read in the data in a frame
     data_from_files <- read.csv(index, header = TRUE)
@@ -20,16 +20,26 @@ complete <- function(directory, id = 1:332){
     number_of_rows  <- nrow(data_from_files)
     
     ## bind the two together....
-    my_data <-  cbind( basename(index), number_of_rows)
-    merged_data <- rbind(my_data)
-  
+    my_vector <- c(basename(index), number_of_rows)
     
-  })
-    
-  as.data.frame(my_file_data)
+  }, simplify = "array", USE.NAMES = FALSE)
   
-     
- my_file_data
+  
+ ## transpose the returned matrrix and make it a data.frame.
+ my_data <- data.frame(t(my_file_data))
+ 
+ ## Add the names to the data.frame
+ names(my_data) <- c("id","nob")
+ 
+ ## Return the data.frame.
+ my_data
+ 
+  
+
+ 
+ 
+ 
+ 
   
   
   
