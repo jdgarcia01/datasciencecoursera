@@ -34,11 +34,11 @@ corr <- function( directory, threshold = 0){
   # find all files in the specdata folder
   file_paths <- as.character( list.files(directory, full.names = TRUE) )
   ##file_paths <- paste(directory, all_files)
-  j <- 1
-  for(i in ids) {
+  vector_count <- 1
+  for(i in ids_above_threshold) {
     current_file <- read.csv(file_paths[i], header=T, sep=",")
-    corr_vector[j] <- cor(current_file$sulfate, current_file$nitrate, use="complete.obs")
-    j <- j + 1
+    corr_vector[vector_count] <- cor(current_file$sulfate, current_file$nitrate, use="complete.obs")
+    vector_count <- vector_count + 1
   }
   result <- corr_vector
   return(result)   
