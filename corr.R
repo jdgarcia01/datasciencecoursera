@@ -16,11 +16,54 @@
 ## R implementation.  You may have to perform some modifications 
 ## to this code to get it to work properly.  Cheers!
 
+
+
+
 corr <- function( directory, threshold = 0){
   ## directory is a character vector to the 
   ## path where our files reside.  
   
+  ## Data.frame that has complete data.
+  ## NA's have been removed.  
+  my_complete_data <- complete(directory,1:332)
   
+  ## This should display the number of stations that are above the observation
+  ## threshold.  So, if you want to take the correlation between 
+  ## sulfate and nitrate from stations that have more than 50 
+  ## observations etc. 
+  my_threshold_ids <-  my_complete_data$id[my_complete_data$nobs > threshold]
+  
+  
+  my_threshold_ids
+  
+  # ## File name of each file. 
+  # file_name <- my_complete_data$id
+  # 
+  # 
+  # ## Create the path to the directory of data.  
+  # full_path_to_file <- paste(directory, "/", file_name, sep = "")
+  # 
+  # ## Subset of ids i.e. above the threshold. 
+  # 
+  # 
+  # 
+  # my_file_data <- sapply(full_path_to_file[], function(file_name){
+  #   
+  #     file_data <- read.csv(file_name, header = TRUE)
+  #     file_data <- na.omit(file_data)
+  #     
+  #   ##  file_data$sulfate
+  #    correlation <- cor(file_data$sulfate, file_data$nitrate, use = "complete" )
+  #    
+  #   
+  # }, simplify = "array")
+  # 
+  # my_file_data
+  # 
+  # 
+  # 
+  # 
+  # 
   
   
   
