@@ -2,10 +2,13 @@
 #the number of completely observed cases in each data file. 
 #The function should return a data frame where the first column is the name of the file
 #and the second column is the number of complete cases. A prototype of this function follows
+## Of course you could just use complete.cases to return a logical vector but 
+## what is the fun in that?  Learn the language by implementing functions!!
 
 ## Author John D. Garcia
 ## This function will return the file name
 ## and the number of non NA observations
+## (ala complete.cases)
 ## as a data.frame. 
 
 
