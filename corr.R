@@ -36,7 +36,7 @@ corr <- function( directory, threshold = 0){
   ##file_paths <- paste(directory, all_files)
   vector_count <- 1
   for(i in ids_above_threshold) {
-    current_file <- read.csv(file_paths[i], header=T, sep=",")
+    current_file <- read.csv(file_paths[i], header=TRUE)
     corr_vector[vector_count] <- cor(current_file$sulfate, current_file$nitrate, use="complete.obs")
     vector_count <- vector_count + 1
   }
