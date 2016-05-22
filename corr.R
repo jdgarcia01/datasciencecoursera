@@ -24,11 +24,12 @@ corr <- function( directory, threshold = 0){
   
   # get the complete table
   complete_table <- complete(directory, 1:332)
+  
   nobs <- complete_table$nobs
   # find the valid ids
-  ids <- complete_table$id[nobs > threshold]
+  ids_above_threshold <- complete_table$id[nobs > threshold]
   # get the length of ids vector
-  id_len <- length(ids)
+  id_len <- length(ids_above_threshold)
   corr_vector <- rep(0, id_len)
   # find all files in the specdata folder
   file_paths <- as.character( list.files(directory, full.names = TRUE) )
