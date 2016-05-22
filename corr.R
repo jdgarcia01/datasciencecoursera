@@ -20,51 +20,28 @@
 
 
 corr <- function( directory, threshold = 0){
-  ## directory is a character vector to the 
-  ## path where our files reside.  
+ 
   
-  ## Data.frame that has complete data.
-  ## NA's have been removed.  
-  my_complete_data <- complete(directory,1:332)
+  # get the complete table
+  complete_table <- complete(directory, 1:332)
+  nobs <- complete_table$nobs
+  # find the valid ids
+  ids <- complete_table$id[nobs > threshold]
+  # get the length of ids vector
+  id_len <- length(ids)
+  corr_vector <- rep(0, id_len)
+  # find all files in the specdata folder
+  file_paths <- as.character( list.files(directory, full.names = TRUE) )
+  ##file_paths <- paste(directory, all_files)
+  j <- 1
+  for(i in ids) {
+    current_file <- read.csv(file_paths[i], header=T, sep=",")
+    corr_vector[j] <- cor(current_file$sulfate, current_file$nitrate, use="complete.obs")
+    j <- j + 1
+  }
+  result <- corr_vector
+  return(result)   
+
   
-  ## This should display the number of stations that are above the observation
-  ## threshold.  So, if you want to take the correlation between 
-  ## sulfate and nitrate from stations that have more than 50 
-  ## observations etc. 
-  my_threshold_ids <-  my_complete_data$id[my_complete_data$nobs > threshold]
-  
-  
-  my_threshold_ids
-  
-  # ## File name of each file. 
-  # file_name <- my_complete_data$id
-  # 
-  # 
-  # ## Create the path to the directory of data.  
-  # full_path_to_file <- paste(directory, "/", file_name, sep = "")
-  # 
-  # ## Subset of ids i.e. above the threshold. 
-  # 
-  # 
-  # 
-  # my_file_data <- sapply(full_path_to_file[], function(file_name){
-  #   
-  #     file_data <- read.csv(file_name, header = TRUE)
-  #     file_data <- na.omit(file_data)
-  #     
-  #   ##  file_data$sulfate
-  #    correlation <- cor(file_data$sulfate, file_data$nitrate, use = "complete" )
-  #    
-  #   
-  # }, simplify = "array")
-  # 
-  # my_file_data
-  # 
-  # 
-  # 
-  # 
-  # 
-  
-  
-  
+
 }
